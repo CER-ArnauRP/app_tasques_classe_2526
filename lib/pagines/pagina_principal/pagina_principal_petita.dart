@@ -1,4 +1,5 @@
 import 'package:app_tasques_classe_2526/colors_app.dart';
+import 'package:app_tasques_classe_2526/components/item_tasca.dart';
 import 'package:flutter/material.dart';
 
 class PaginaPrincipalPetita extends StatelessWidget {
@@ -27,7 +28,31 @@ class PaginaPrincipalPetita extends StatelessWidget {
         ],
       ),
 
-      body: Center(child: Text("Pantalla Petita")),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 2,
+            decoration: BoxDecoration(
+              color: ColorsApp.colorBlanc,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 2,
+                ),
+              ],
+            ),
+          ),
+          
+          Expanded(
+            child: ListView.builder(
+              itemCount: 30,
+              itemBuilder: (context, index) {
+                return ItemTasca(valorText: index.toString(),);
+              },
+            ),
+          ),
+        ],
+      ),
 
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
