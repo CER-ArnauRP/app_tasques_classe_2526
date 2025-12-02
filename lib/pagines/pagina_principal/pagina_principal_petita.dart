@@ -1,4 +1,5 @@
 import 'package:app_tasques_classe_2526/colors_app.dart';
+import 'package:app_tasques_classe_2526/components/dialog_nova_tasca.dart';
 import 'package:app_tasques_classe_2526/components/item_tasca.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class PaginaPrincipalPetita extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorsApp.colorPrimari,
       appBar: AppBar(
-        backgroundColor: ColorsApp.colorSecundari,
+        backgroundColor: ColorsApp.colorPrimariAccent,
         title: Text(
           "App Tasques", 
           style: TextStyle(
@@ -59,7 +60,7 @@ class PaginaPrincipalPetita extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {},
-            backgroundColor: ColorsApp.colorSecundari,
+            backgroundColor: ColorsApp.colorPrimariAccent,
             shape: CircleBorder(side: BorderSide(color: ColorsApp.colorBlanc, width: 2)),
             child: Icon(Icons.favorite, color: ColorsApp.colorBlanc,),
           ),
@@ -67,13 +68,27 @@ class PaginaPrincipalPetita extends StatelessWidget {
           SizedBox(height: 10,),
 
           FloatingActionButton(
-            onPressed: () {},
-            backgroundColor: ColorsApp.colorSecundari,
+            onPressed: () {
+              obreDialogNovaTasca(context);
+            },
+            backgroundColor: ColorsApp.colorPrimariAccent,
             shape: CircleBorder(side: BorderSide(color: ColorsApp.colorBlanc, width: 2)),
             child: Icon(Icons.add, color: ColorsApp.colorBlanc,),
           ),
         ],
       ),
+    );
+  }
+
+  void obreDialogNovaTasca(BuildContext context){
+
+    // showDialog és una funció de Flutter que obre un Dialog que haguem creat/definit.
+    showDialog(
+      context: context, 
+      builder: (context) {
+
+        return DialogNovaTasca();
+      },
     );
   }
 }

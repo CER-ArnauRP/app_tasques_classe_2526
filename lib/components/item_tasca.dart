@@ -40,7 +40,7 @@ class _ItemTascaState extends State<ItemTasca> {
       padding: const EdgeInsets.all(10),
 
       decoration: BoxDecoration(
-        color: ColorsApp.colorTerciari,
+        color: ColorsApp.colorMarro,
         borderRadius: BorderRadius.circular(20),
       ),
 
@@ -57,7 +57,7 @@ class _ItemTascaState extends State<ItemTasca> {
               ),
               shape: CircleBorder(),
               value: valorCheckbox, 
-              checkColor: ColorsApp.colorRosa,
+              checkColor: ColorsApp.colorPrimariAccent3,
               activeColor: ColorsApp.colorBlanc,
               hoverColor: ColorsApp.colorPrimariAccent,
               onChanged: (valor){
