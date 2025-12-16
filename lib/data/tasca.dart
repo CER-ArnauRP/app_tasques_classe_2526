@@ -1,0 +1,56 @@
+/*
+
+  Fem servir la BD Hive.
+  Hive és una base de dades NoSQL.
+
+  Per a cada tipus d'objecte que volem guardar a la BD,
+  hem de crear una classe que hereti de HiveObject.
+
+  Instal·lar les dependències de desenvolupament (dev_dependencies):
+    hive_generator
+    build_runner
+  
+      flutter pub add --dev hive_generator
+      flutter pub add --dev build_runner
+
+  Després d'haver creat aquesta classe, hem de generar
+  el fitxer .g.dart corresponent, que farà 
+  la serialització (conversió de l'objecte a dades
+  que es poden guardar a la BD, i viceversa).
+
+  Després, escriure part 'tasca.g.dart';
+  i executar a la terminal:
+    flutter pub run build_runner build
+    (cal haver parat l'execució de l'app si està en marxa).
+    
+      Això ens generarà l'arxiu tasca.g.dart automàticament.
+
+      El nom de l'arxiu tasca.dart, ha de ser igual que el nom
+      de la classe en minúscules.
+
+      Si la classe canvia, per exemple, s'afegeix un nou atribut,
+      cal tornar a executar la comanda de build_runner per
+      actualitzar l'arxiu tasca.g.dart.
+
+*/
+
+
+import 'package:hive/hive.dart';
+
+part 'tasca.g.dart';
+
+@HiveType(typeId: 0) // Pot anar de 0 a 255.
+class Tasca extends HiveObject {
+
+  @HiveField(0)
+  String titol;
+
+  @HiveField(1)
+  bool completada;
+
+  Tasca({
+    required this.titol,
+    this.completada = false, // Es creen amb el checkbox no marcat.
+  });
+
+}

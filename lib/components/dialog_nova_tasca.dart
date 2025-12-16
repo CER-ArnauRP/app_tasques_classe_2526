@@ -1,13 +1,25 @@
 import 'package:app_tasques_classe_2526/colors_app.dart';
 import 'package:app_tasques_classe_2526/components/boto_dialog.dart';
 import 'package:app_tasques_classe_2526/components/textfield_personalitzat.dart';
+import 'package:app_tasques_classe_2526/data/repositori_tasca.dart';
+import 'package:app_tasques_classe_2526/data/tasca.dart';
 import 'package:flutter/material.dart';
 
 class DialogNovaTasca extends StatelessWidget {
-  const DialogNovaTasca({super.key});
+
+  final String textTasca;
+  final int indexTasca;
+
+  const DialogNovaTasca({
+    super.key,
+    this.textTasca = "",
+    this.indexTasca = -1,
+  });
 
   @override
   Widget build(BuildContext context) {
+
+    final TextEditingController controllerTextTasca = TextEditingController();
 
     return AlertDialog(
 
@@ -34,7 +46,7 @@ class DialogNovaTasca extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextfieldPersonalitzat(),
+            TextfieldPersonalitzat(controllerTitol: controllerTextTasca,),
 
             SizedBox(height: 20),
 
@@ -56,7 +68,9 @@ class DialogNovaTasca extends StatelessWidget {
                   colorBoto: ColorsApp.colorAcceptar, 
                   iconaBoto: Icon(Icons.save),
                   accioBoto: () { 
-                    guardaTasca(context);
+                    indexTasca == -1 ? 
+                      guardaTasca(context, controllerTextTasca.text) : 
+                      editaTasca(context, controllerTextTasca.text, indexTasca);
                   },
                 ),
               ],
@@ -67,7 +81,19 @@ class DialogNovaTasca extends StatelessWidget {
     );
   }
 
-  void guardaTasca(BuildContext context) {
+  void guardaTasca(BuildContext context, String textDeLaTasca) {
+
+    RepositoriTasca repostiriTasca = RepositoriTasca();
+    repostiriTasca.afegirTasca(Tasca(titol: textDeLaTasca));
+
+    Navigator.of(context).pop();
+  }
+
+  void editaTasca(BuildContext context, String textDeLaTasca, int indexTasca) {
+
+    RepositoriTasca repostiriTasca = RepositoriTasca();
+    repostiriTasca.actualitzaTasca(indexTasca, Tasca(titol: textDeLaTasca));
+
     Navigator.of(context).pop();
   }
 
